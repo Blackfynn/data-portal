@@ -4,7 +4,10 @@ dist
 node_modules
 
 venv/
+env/
 
 *.pyc
 __pycache__/
 .idea
+
+setenv.sh

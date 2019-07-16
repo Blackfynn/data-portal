@@ -11,6 +11,8 @@ from blackfynn import Blackfynn
 from config import Config
 from flask_marshmallow import Marshmallow
 from neo4j import GraphDatabase, basic_auth
+from pymongo import MongoClient
+from datetime import datetime
 import json
 import urllib
 
@@ -22,6 +24,7 @@ api_blueprint = Blueprint('api', __name__, template_folder='templates', url_pref
 
 bf = None
 gp = None
+mongo = None
 ma = Marshmallow(app)
 
 @app.before_first_request
@@ -36,6 +39,7 @@ def connect_to_blackfynn():
        concepts_api_host=Config.BLACKFYNN_CONCEPTS_API_HOST
     )
 
+''' TEST: ignoring graphDB for now
 @app.before_first_request
 def connect_to_graphenedb():
     global gp
@@ -43,6 +47,12 @@ def connect_to_graphenedb():
     graphenedb_user = Config.GRAPHENEDB_BOLT_USER
     graphenedb_pass = Config.GRAPHENEDB_BOLT_PASSWORD
     gp = GraphDatabase.driver(graphenedb_url, auth=basic_auth(graphenedb_user, graphenedb_pass))
+'''
+
+@app.before_first_request
+def connect_to_mongodb():
+    global mongo
+    mongo = MongoClient(Config.MONGODB_URI)
 
 #########################
 #### GRAPHDB  routes ####
@@ -50,6 +60,7 @@ def connect_to_graphenedb():
 
 # API Endpoint which returns all the names of the properties that are available
 # in the database.
+'''
 @api_blueprint.route('/db/graph/properties')
 def graph_props():
     cmd = 'MATCH (n:GraphModel)-[*1]-(m:GraphModelProp) RETURN n.name, m.name, m.type'
@@ -263,6 +274,7 @@ def getNeighborModels(model, hops):
             resp.append(k['n.name'])
 
     return json.dumps(resp)
+'''
 
 #########################
 #### DAT-CORE routes ####
@@ -273,6 +285,15 @@ def getNeighborModels(model, hops):
 def discover():
     resp = bf._api._get('/consortiums/1/datasets')
     return json.dumps(resp)
+
+# Get a list of embargoed (unpublished) datasets
+@api_blueprint.route('/datasets/embargo')
+def embargo():
+    DB_NAME = 'sparc-embargo'
+    COLLECTION_NAME = 'sparc-embargo'
+    collection = mongo[DB_NAME][COLLECTION_NAME]
+    embargo_list = list(collection.find({}, {'_id':0}))
+    return json.dumps(embargo_list)
 
 #########################
 #### MAP-CORE routes ####
