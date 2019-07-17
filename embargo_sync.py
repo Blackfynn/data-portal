@@ -5,12 +5,6 @@ from config import Config
 from blackfynn import Blackfynn
 from pymongo import MongoClient
 
-import dateutil.parser
-
-# Constants:
-DB_NAME = 'sparc-embargo'
-COLLECTION_NAME = 'sparc-embargo'
-
 print('Starting embargoed data sync')
 
 ### Connect to Blackfynn
@@ -27,8 +21,8 @@ print('done')
 ### Connect to MongoDB
 print('Connecting to MongoDB ...', end=' ')
 client = MongoClient(Config.MONGODB_URI)
-db = client[DB_NAME]
-embargoed = db[COLLECTION_NAME]
+db = client[Config.MONGODB_NAME]
+embargoed = db[Config.MONGODB_COLLECTION]
 print('done')
 
 def transform(ds):

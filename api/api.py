@@ -285,9 +285,7 @@ def discover():
 # Get a list of embargoed (unpublished) datasets
 @api_blueprint.route('/datasets/embargo')
 def embargo():
-    DB_NAME = 'sparc-embargo'
-    COLLECTION_NAME = 'sparc-embargo'
-    collection = mongo[DB_NAME][COLLECTION_NAME]
+    collection = mongo[Config.MONGODB_NAME][Config.MONGODB_COLLECTION]
     embargo_list = list(collection.find({}, {'_id':0}))
     return json.dumps(embargo_list)
 
