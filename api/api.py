@@ -39,7 +39,6 @@ def connect_to_blackfynn():
        concepts_api_host=Config.BLACKFYNN_CONCEPTS_API_HOST
     )
 
-''' TEST: ignoring graphDB for now
 @app.before_first_request
 def connect_to_graphenedb():
     global gp
@@ -47,7 +46,6 @@ def connect_to_graphenedb():
     graphenedb_user = Config.GRAPHENEDB_BOLT_USER
     graphenedb_pass = Config.GRAPHENEDB_BOLT_PASSWORD
     gp = GraphDatabase.driver(graphenedb_url, auth=basic_auth(graphenedb_user, graphenedb_pass))
-'''
 
 @app.before_first_request
 def connect_to_mongodb():
@@ -60,7 +58,6 @@ def connect_to_mongodb():
 
 # API Endpoint which returns all the names of the properties that are available
 # in the database.
-'''
 @api_blueprint.route('/db/graph/properties')
 def graph_props():
     cmd = 'MATCH (n:GraphModel)-[*1]-(m:GraphModelProp) RETURN n.name, m.name, m.type'
@@ -274,7 +271,6 @@ def getNeighborModels(model, hops):
             resp.append(k['n.name'])
 
     return json.dumps(resp)
-'''
 
 #########################
 #### DAT-CORE routes ####
