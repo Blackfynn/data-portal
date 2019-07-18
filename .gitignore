@@ -5,9 +5,8 @@ node_modules
 
 venv/
 env/
+.env
 
 *.pyc
 __pycache__/
 .idea
-
-setenv.sh
