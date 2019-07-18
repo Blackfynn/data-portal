@@ -5,7 +5,7 @@
                 <div class="header">
                     <div class="logo">
                         <sparc-logo/>
-                        <span class="data-portal-title">Data Portal</span>
+                        <!-- <span class="data-portal-title">Data Portal</span> -->
                     </div>
                     <div class="navigation">
                         <ul>
@@ -32,7 +32,7 @@
         {
             title: "Overview",
             href: "/",
-            active: pathOrHashContainsString("/") && !pathOrHashContainsString("/about") && !pathOrHashContainsString("/browse")
+            active: pathOrHashContainsString("/") && !pathOrHashContainsString("/about") && !pathOrHashContainsString("/browse") && !pathOrHashContainsString("/map")
         },
         {
             title: "About",
@@ -46,11 +46,12 @@
         },
         {
             title: "Visualize Maps",
-            href: "/#"
+            href: "/map",
+            active: pathOrHashContainsString("/map")
         },
         {
             title: "Run Simulations",
-            href: "/#"
+            href: "/sim/#"
         }
     ];
 
@@ -80,6 +81,7 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        align-items: flex-end;
 
         .logo {
             height: 40px;
