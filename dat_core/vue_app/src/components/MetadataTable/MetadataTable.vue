@@ -130,7 +130,9 @@ import Pagination from '../Pagination/Pagination.vue'
           this.dropdownSelection = true
           this.defaultModel = model
         }
-        this.offset = (this.page - 1) * this.limit
+        if (this.page !== 1) {
+          this.offset = this.page - this.limit
+        }
         this.axios.get(`${this.getRecordsUrl}&limit=${this.limit}&offset=${this.offset}`)
         .then(response => {
            this.isLoading = false
