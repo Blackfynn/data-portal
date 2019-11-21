@@ -141,7 +141,7 @@ h2 {
   }
 }
 
-/deep/ .el-dialog {
+.el-dialog {
   background: none;
   display: flex;
   height: 100vh;
@@ -173,32 +173,32 @@ h2 {
   max-width: 317px;
 }
 
-/deep/ .el-form-item__label {
+.el-form-item__label {
   line-height: 1.2
 }
 
-/deep/ .el-input {
+.el-input {
   .el-input__inner {
     border-radius: 4px;
     border: 1px solid #909399;
   }
 }
 
-/deep/ .el-form-item {
+.el-form-item {
   margin-bottom: 26px;
   &:last-child {
     margin: 0;
   }
 }
 
-/deep/ .el-textarea {
+.el-textarea {
   .el-textarea__inner {
     border-radius: 4px;
     border: 1px solid #909399;
   }
 }
 
-/deep/ .el-form {
+.el-form {
   .el-form-item {
     .el-form-item__label {
       text-transform: none;

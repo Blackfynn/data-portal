@@ -44,10 +44,11 @@
 <script>
     import SparcLogo from "../logo/SparcLogo.vue";
 
-    const path = () => window.location.pathname || "";
-    const hash = () => window.location.hash || "";
+    const path = () =>  "";
+    const hash = () =>  "";
 
     const pathOrHashContainsString = (query) => (path().indexOf(query) > -1) || (hash().indexOf(query) > -1);
+
 
     const links = [
         {
@@ -94,7 +95,7 @@
 </script>
 
 <style scoped lang="scss">
-    @import '../../../../../static/css/_variables.scss';
+    @import '@/assets/_variables.scss';
 
     .nav {
         height: 3em;

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <sparc-header/>
     <div class="head">
       <div class="texture">
         <el-row class="blob-row" type="flex" justify="center">
@@ -99,7 +100,9 @@
         </el-col>
       </el-row>
     </div>
+    <sparc-footer />
   </div>
+  
 </template>
 
 <script>
@@ -110,9 +113,10 @@ import mapCore from "../static/images/map-core-image.jpg";
 import simulationCore from "../static/images/osparc-human.png";
 import dataCore from "../static/images/datcore-card-image.svg";
 import datasetAbstractImage from "../static/images/dataset-abstract-image.png";
-// import SparcFooter from "../components/footer/Footer.vue";
+import sparcHeader from "@/components/header/Header.vue"
+import sparcFooter from "@/components/footer/Footer.vue";
 // import FeaturedDatasets from "../featured-datasets-carousel/FeaturedDatasetsCarousel.vue";
-// import SearchControls from "../../../../../dat_core/vue_app/src/components/search-controls/SearchControls.vue";
+import SearchControls from "@/components/search-controls/SearchControls.vue";
 
 const cores = [
   {
@@ -141,6 +145,9 @@ const cores = [
 export default {
   name: "index",
   components: {
+    sparcHeader,
+    sparcFooter,
+    SearchControls
   },
 
   data: () => ({
