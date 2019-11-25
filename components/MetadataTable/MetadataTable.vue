@@ -70,7 +70,8 @@ import Pagination from '../Pagination/Pagination.vue'
         offset: 0,
         totalCount: 0,
         page: 1,
-        value: ''
+        value: '',
+        hasError: false
       }
     },
     props: {
@@ -131,7 +132,7 @@ import Pagination from '../Pagination/Pagination.vue'
           this.defaultModel = model
         }
         this.offset = (this.page - 1) * this.limit
-        this.axios.get(`${this.getRecordsUrl}&limit=${this.limit}&offset=${this.offset}`)
+        this.$axios.$get(`${this.getRecordsUrl}&limit=${this.limit}&offset=${this.offset}`)
         .then(response => {
            this.isLoading = false
            this.headings = []

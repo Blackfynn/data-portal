@@ -1,34 +1,35 @@
 <template>
-  <el-row gutter="20" type="flex" class="cards">
+  <el-row :gutter=20 type="flex" class="cards">
     <el-col class="cards-col" :xs="24" :sm="12" :md="8" :lg="6" v-for="card in cards" v-bind:key="card.key">
       <div class="card">
         <div class="card-top">
-          <router-link
+          <nuxt-link
             :to="{
-              name: 'Dataset',
+              name: 'datasets-datasetId',
               params: {
                 datasetId: card.id
               }
             }"
           >
           <dataset-banner-image :src="card.banner" />
-          </router-link>
+          </nuxt-link>
         
           <h3 class="title">{{ card.name }}</h3>
           <p class="description">{{ card.description }}</p>
         </div>
         <div class=card-bottom>
           <div class="link">
-            <router-link
+            <nuxt-link
+              no-prefetch
               :to="{
-                name: 'Dataset',
+                name: 'datasets-datasetId',
                 params: {
                   datasetId: card.id
                 }
               }"
             >
               Explore Dataset
-            </router-link>
+            </nuxt-link>
             <a v-bind:href="card.href">{{ card.cta }}</a>
           </div>
         </div>

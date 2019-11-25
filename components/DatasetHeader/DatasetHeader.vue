@@ -157,16 +157,16 @@
 </template>
 
 <script>
-import BfButton from '../shared/BfButton/BfButton.vue'
+import BfButton from '@/components/shared/BfButton/BfButton.vue'
 
-import DatasetBannerImage from '../DatasetBannerImage/DatasetBannerImage.vue'
-import DownloadDataset from '../DownloadDataset/DownloadDataset.vue'
-import ContributorItem from '../ContributorItem/ContributorItem.vue'
+import DatasetBannerImage from '@/components/DatasetBannerImage/DatasetBannerImage.vue'
+import DownloadDataset from '@/components/DownloadDataset/DownloadDataset.vue'
+import ContributorItem from '@/components/ContributorItem/ContributorItem.vue'
 
-import FormatDate from '../../mixins/format-date'
+import FormatDate from '@/mixins/format-date'
 
-import FormatStorage from '../../mixins/bf-storage-metrics'
-import { getLicenseLink, getLicenseAbbr } from '../../utils/license-util'
+import FormatStorage from '@/mixins/bf-storage-metrics'
+import { getLicenseLink, getLicenseAbbr } from '@/static/js/license-util'
 import {
   compose,
   head,

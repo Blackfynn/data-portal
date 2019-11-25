@@ -107,8 +107,9 @@
                   v-loading="citationLoading"
                   class="info-citation"
                   aria-live="polite"
-                  v-html="$sanitize(citationText, ['i'])"
+                  v-html=citationText  
                 />
+                <!-- "$sanitize(citationText, ['i'])" -->
                 <div class="info-citation-links mb-24">
                   Formatted as:
                   <button
@@ -164,13 +165,13 @@ import {
 } from 'ramda'
 // import { mapState } from 'vuex'
 
-import DatasetHeader from '../DatasetHeader/DatasetHeader.vue'
-import TagList from '../TagList/TagList.vue'
-import FilesTable from '../FilesTable/FilesTable.vue'
-import MetadataTable from '../MetadataTable/MetadataTable.vue'
+import DatasetHeader from '@/components/DatasetHeader/DatasetHeader.vue'
+import TagList from '@/components/TagList/TagList.vue'
+import FilesTable from '@/components/FilesTable/FilesTable.vue'
+import MetadataTable from '@/components/MetadataTable/MetadataTable.vue'
 
-import Request from '../../mixins/request'
-import DateUtils from '../../mixins/format-date'
+import Request from '@/mixins/request'
+import DateUtils from '@/mixins/format-date'
 
 marked.setOptions({
   sanitize: true
@@ -267,7 +268,9 @@ export default {
      * @returns {String}
      */
     thisUrl: function () {
-      return window.location.origin + this.$route.fullPath
+      return ""
+      // return this.$route.fullPath
+      // return window.location.origin + this.$route.fullPath
     },
     /**
      * Return DOI link
@@ -363,7 +366,7 @@ export default {
     getProtocolRecords: function () {
       this.$axios.$get(this.getSearchRecordsUrl)
         .then(response => {
-          const records = propOr([], 'records', response.data)
+          const records = propOr([], 'records', response)
           if (records.length !== 0){
             // that means protocol records exist
             this.datasetRecords = records
@@ -381,7 +384,7 @@ export default {
 
       this.$axios.$get(this.getDatasetUrl)
         .then(response => {
-          this.datasetDetails = response.data
+          this.datasetDetails = response
         })
         .catch(error => {
           // handle error
@@ -487,7 +490,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../assets/_spacing.scss';
+@import '@/assets/_spacing.scss';
 
 .header {
   .gradient {
@@ -622,7 +625,7 @@ export default {
   line-height: 24px;
   padding-bottom: 92px;
 
-  /deep/ {
+
     h1,
     p,
     h2,
@@ -630,7 +633,7 @@ export default {
     blockquote,
     h4,
     pre {
-      max-width: 616px;
+        max-width: 616px;
     }
 
     h1,
@@ -638,74 +641,74 @@ export default {
     h3,
     h4,
     h5 {
-      margin: 0 0 8px;
+        margin: 0 0 8px;
     }
 
     h1 {
-      font-size: 32px;
-      font-weight: bold;
-      line-height: 40px;
+        font-size: 32px;
+        font-weight: bold;
+        line-height: 40px;
     }
 
     p {
-      margin-bottom: 16px;
+        margin-bottom: 16px;
     }
 
     img {
-      height: auto;
-      max-width: 170%;
-      margin-bottom: 20px;
-      flex-basis: 50%;
-      margin-top: 24px;
+        height: auto;
+        max-width: 170%;
+        margin-bottom: 20px;
+        flex-basis: 50%;
+        margin-top: 24px;
     }
 
     h2 {
-      font-size: 24px;
-      font-weight: bold;
-      line-height: 32px;
+        font-size: 24px;
+        font-weight: bold;
+        line-height: 32px;
     }
 
     h3 {
-      font-size: 20px;
-      font-weight: bold;
-      line-height: 24px;
-      letter-spacing: 0px;
+        font-size: 20px;
+        font-weight: bold;
+        line-height: 24px;
+        letter-spacing: 0px;
     }
 
     h4 {
-      font-size: 16px;
-      font-weight: bold;
-      line-height: 24px;
-      text-transform: uppercase;
-      letter-spacing: 0px;
+        font-size: 16px;
+        font-weight: bold;
+        line-height: 24px;
+        text-transform: uppercase;
+        letter-spacing: 0px;
     }
 
     ul {
-      margin: 0 0 16px;
-      padding: 0 0 0 18px;
+        margin: 0 0 16px;
+        padding: 0 0 0 18px;
     }
 
     blockquote {
-      font-weight: normal;
-      line-height: 24px;
-      font-size: 16px;
-      border-left: 8px solid #2760ff;
-      margin-left: 0;
+        font-weight: normal;
+        line-height: 24px;
+        font-size: 16px;
+        border-left: 8px solid #2760ff;
+        margin-left: 0;
 
-      p {
+        p {
         margin-left: 16px;
-      }
+        }
     }
     pre {
-      background-color: #f1f1f3;
-      line-height: 24px;
-      padding: 16px;
+        background-color: #f1f1f3;
+        line-height: 24px;
+        padding: 16px;
 
-      code {
+        code {
         font-weight: normal;
         font-size: 14px;
-      }
-    }
+        }
+
   }
 }
 .files-table {

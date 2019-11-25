@@ -62,13 +62,13 @@
         },
         {
             title: "About",
-            href: "/#/about",
+            href: "/about",
             active: pathOrHashContainsString("/about")
         },
         {
             title: "Browse Data",
-            href: "/browse",
-            active: pathOrHashContainsString("/browse")
+            href: "/data",
+            active: pathOrHashContainsString("/data")
         },
         {
             title: "Visualize Maps",
@@ -98,7 +98,7 @@
     @import '@/assets/_variables.scss';
 
     .nav {
-        height: 3em;
+        height: 4em;
         padding: 0;
         padding-top: 1rem;
     }

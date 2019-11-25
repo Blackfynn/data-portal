@@ -6,10 +6,10 @@
           <el-col :xs="22" :sm="22" :md="22" :lg="18" :xl="16">
             <div class="breadcrumb">
               <el-row>
-                <el-col :xs="24" :lg="12">
+                <!-- <el-col :xs="24" :lg="12"> -->
                   <h3>Data</h3>
-                  <p>A growing collection of SPARC data provides insight into neural control of organ function. Datasets are annotated with common standards, allowing users to perform cross-dataset comparisons and analyses.</p>
-                </el-col>
+                  <p>Datasets are annotated with common standards, allowing users to perform cross-dataset comparisons and analyses.</p>
+                <!-- </el-col> -->
               </el-row>
             </div>
           </el-col>
@@ -149,14 +149,14 @@ import {
   pathOr,
   propOr
 } from 'ramda'
-import Grid from "../grid/Grid.vue";
-import GridEmbargo from "../gridEmbargo/GridEmbargo.vue";
+import Grid from "@/components/grid/Grid.vue";
+import GridEmbargo from "@/components/gridEmbargo/GridEmbargo.vue";
 
-import SearchControls from "../search-controls/SearchControls.vue";
-import Pagination from "../Pagination/Pagination.vue";
-import BfButton from '../shared/BfButton/BfButton.vue'
+import SearchControls from "@/components/search-controls/SearchControls.vue";
+import Pagination from "@/components/Pagination/Pagination.vue";
+import BfButton from '@/components/shared/BfButton/BfButton.vue'
 
-import FormatStorage from '../../mixins/bf-storage-metrics/index'
+import FormatStorage from '@/mixins/bf-storage-metrics/index'
 
 import "regenerator-runtime/runtime";
 
@@ -200,13 +200,13 @@ export default {
   },
 
   created: function () {
-    if (window.gtag) {
-      const routerBase = pathOr('', ['options', 'base'], this.$router)
-      window.gtag('config', 'UA-143804703-1', {
-        'page_title' : this.$route.name,
-        'page_path': `${routerBase}/#${this.$route.fullPath}`
-      })
-    }
+    // if (window.gtag) {
+    //   const routerBase = pathOr('', ['options', 'base'], this.$router)
+    //   window.gtag('config', 'UA-143804703-1', {
+    //     'page_title' : this.$route.name,
+    //     'page_path': `${routerBase}/#${this.$route.fullPath}`
+    //   })
+    // }
   },
 
   methods: {
@@ -283,7 +283,7 @@ export default {
         }
       })
 
-      this.$http.get(requestUrl).then(
+      this.$axios.get(requestUrl).then(
         function(response) {
           this.totalCount = response.data.totalCount;
           this.limit = response.data.limit;
@@ -328,7 +328,7 @@ export default {
 
       const requestUrl = `/api/download?key=${filePath}`
 
-      this.$http.get(requestUrl).then(
+      this.$axios.get(requestUrl).then(
         response => {
           this.downloadFile(fileName, response.data)
         }
@@ -352,7 +352,7 @@ export default {
 
       const requestUrl = `/api/download?key=${filePath}`
 
-      this.$http.get(requestUrl).then(
+      this.$axios.get(requestUrl).then(
         response => {
           const url = response.data
           const encodedUrl = encodeURIComponent(url)
@@ -448,7 +448,7 @@ button.clear-all {
     background-image: linear-gradient(90deg, #0026ff 0%, #00ffb9 100%);
 
     .breadcrumb {
-      width: 50%;
+      width: 75%;
     }
   }
 }

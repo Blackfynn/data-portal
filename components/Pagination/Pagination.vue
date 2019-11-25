@@ -2,7 +2,7 @@
   <div class="pagination">
     <el-pagination
       :page-size="pageSize"
-      :pager-count="pageCount"
+      :page-count="pageCount"
       layout="prev, pager, next"
       :total="totalCount"
       @current-change="selectPage"
@@ -26,12 +26,10 @@ export default {
       type: Number
     }
   },
-  computed() {
-    return {
+  computed: {
       pageCount: function() {
         return Math.ceil(this.totalCount / this.pageSize);
       }
-    };
   },
   methods: {
     /**

@@ -243,7 +243,7 @@
         this.hasError = false
         this.isLoading = true
 
-        this.$http.get(this.getFilesurl)
+        this.$axios.$get(this.getFilesurl)
           .then(response => {
             this.data = response.data.files
           })

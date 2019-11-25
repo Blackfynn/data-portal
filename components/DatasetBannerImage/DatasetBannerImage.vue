@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import brokenImage from '../../../public/images/illustrations/icon-broken-image.svg'
+import brokenImage from '@/static/images/icon-broken-image.svg'
 
 export default {
   name: 'DatasetBannerImage',

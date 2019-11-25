@@ -87,7 +87,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import '../../../../../../static/css/_variables.scss';
+  @import '@/assets/_variables.scss';
 
   .bf-button {
     align-items: center;

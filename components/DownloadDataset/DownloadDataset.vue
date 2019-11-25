@@ -168,14 +168,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/deep/ {
+
   .el-dialog__body {
     padding: 0;
   }
   .el-dialog__header {
     display: none;
   }
-}
+
 
 .discover-banner {
   background: #EDF1FC;

@@ -1,6 +1,5 @@
 <template>
   <div>
-    <sparc-header/>
     <div class="head">
       <div class="texture">
         <el-row class="blob-row" type="flex" justify="center">
@@ -100,7 +99,6 @@
         </el-col>
       </el-row>
     </div>
-    <sparc-footer />
   </div>
   
 </template>
@@ -113,8 +111,6 @@ import mapCore from "../static/images/map-core-image.jpg";
 import simulationCore from "../static/images/osparc-human.png";
 import dataCore from "../static/images/datcore-card-image.svg";
 import datasetAbstractImage from "../static/images/dataset-abstract-image.png";
-import sparcHeader from "@/components/header/Header.vue"
-import sparcFooter from "@/components/footer/Footer.vue";
 // import FeaturedDatasets from "../featured-datasets-carousel/FeaturedDatasetsCarousel.vue";
 import SearchControls from "@/components/search-controls/SearchControls.vue";
 
@@ -145,8 +141,6 @@ const cores = [
 export default {
   name: "index",
   components: {
-    sparcHeader,
-    sparcFooter,
     SearchControls
   },
 
@@ -195,8 +189,8 @@ export default {
      */
     onSearchQuery: function(selectedType, terms) {
       const url = terms === null
-        ? `/browse/#/?searchType=${selectedType}`
-        : `/browse/#/?searchType=${selectedType}&searchTerms=${terms}`
+        ? `/data/?searchType=${selectedType}`
+        : `/data/?searchType=${selectedType}&searchTerms=${terms}`
 
       window.location.href = url
     }
