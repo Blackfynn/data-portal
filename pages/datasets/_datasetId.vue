@@ -7,8 +7,14 @@
             <div class="breadcrumb">
               <el-row>
                 <el-col :span="24">
-                  Browse Data / {{ datasetName }}
+                  <router-link
+              :to="{ name: 'data' }"
+            >
+              <i class="el-icon-arrow-left" />
+              View all Datasets
+            </router-link>
                 </el-col>
+                
               </el-row>
             </div>
           </el-col>
@@ -268,9 +274,9 @@ export default {
      * @returns {String}
      */
     thisUrl: function () {
-      return ""
-      // return this.$route.fullPath
-      // return window.location.origin + this.$route.fullPath
+      // return ""
+      return this.$route.fullPath
+      return window.location.origin + this.$route.fullPath
     },
     /**
      * Return DOI link

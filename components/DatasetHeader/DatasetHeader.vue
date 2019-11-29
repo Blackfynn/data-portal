@@ -8,19 +8,19 @@
         :lg="18"
         :xl="16"
       >
-        <el-row class="breadcrumb">
+        <!-- <el-row class="breadcrumb">
           <el-col
             :xs="24"
             :sm="12"
           >
             <router-link
-              :to="{ name: 'Browse' }"
+              :to="{ name: 'data' }"
             >
               <i class="el-icon-arrow-left" />
               View all Datasets
             </router-link>
           </el-col>
-        </el-row>
+        </el-row> -->
         <el-row>
           <el-col
             :xs="24"
@@ -29,14 +29,7 @@
             <h1 class="dataset-title">
               {{ datasetTitle }}
             </h1>
-            <p class="dataset-description">
-              {{ datasetDescription }}
-            </p>
-            <div class="dataset-meta">
-              <div class="dataset-updated-date">
-                Updated on {{ updatedDate }}
-              </div>
-              <div class="dataset-owners">
+            <div class="dataset-owners">
                 <template v-if="!isContributorListVisible">
                   <contributor-item :contributor="firstContributor" />
                   <button
@@ -61,14 +54,28 @@
                   </template>
                 </div>
               </div>
+            <p class="dataset-description">
+              {{ datasetDescription }}
+            </p>
+            <div class="dataset-doi">
+                <p class="info-text">{{ datasetDOI }}</p>
             </div>
 
-            <bf-button
-              class="get-dataset-button"
-              @click="isDownloadModalVisible = true"
-            >
-              Get Dataset
-            </bf-button>
+            <div class="dataset-meta">
+              <div class="dataset-updated-date">
+                Updated on {{ updatedDate }}
+              </div>
+              
+            </div>
+            
+            <div class="dataset-actions">
+              <bf-button
+                class="get-dataset-button"
+                @click="isDownloadModalVisible = true"
+              >
+                Get Dataset
+              </bf-button>
+            </div>
 
             <div class="header-stats-section">
               <div class="header-stats-block">
@@ -388,7 +395,16 @@ export default {
      */
     datasetOwner: function () {
       return propOr('', 'ownerName', this.datasetDetails)
-    }
+    },
+
+    /**
+     * Get the dataset DOI and return the url
+     * @returns {String}
+     */
+    datasetDOI: function () {
+      const doi = propOr('', 'doi', this.datasetDetails)
+      return `https://doi.org/${doi}`
+    },
   },
 
   watch: {
@@ -548,10 +564,10 @@ export default {
 .dataset-header {
   padding: 48px 0;
   h1 {
-    font-size: 2.25em;
+    font-size: 1.8em;
     color: #000;
     font-weight: bold;
-    margin: 0 0 64px;
+    margin: 0 0 8px;
     line-height: 40px;
     word-break: break-word;
   }
@@ -561,6 +577,29 @@ export default {
   font-size: 16px;
   line-height: 24px;
   margin: 0 0 32px;
+}
+
+.dataset-doi {
+  height: 24px;
+  color: #404554;
+  font-size: 14px;
+  line-height: 24px;
+
+  a {
+    color: #404554;
+    text-decoration: underline;
+    &:hover,
+    &:active,
+    &:visited {
+      color: #404554;
+    }
+    &:focus {
+      color: black;
+    }
+  }  
+}
+.dataset-actions {
+  padding: 8px 0;
 }
 
 .dataset-owners {

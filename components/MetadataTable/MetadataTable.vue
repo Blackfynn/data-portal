@@ -137,8 +137,8 @@ import Pagination from '../Pagination/Pagination.vue'
            this.isLoading = false
            this.headings = []
            this.properties = []
-           this.totalCount = response.data.totalCount
-           this.records = propOr([], 'records', response.data)
+           this.totalCount = response.totalCount
+           this.records = propOr([], 'records', response)
            const properties = propOr({}, 'properties', head(this.records))
            // just to get the property names for the table since they're all
            // the same across records

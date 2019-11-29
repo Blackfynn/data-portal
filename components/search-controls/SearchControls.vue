@@ -74,16 +74,20 @@ export default {
       terms: null,
       types: [
         {
-          label: "Datasets",
+          label: "SPARC Datasets",
           key: "datasets"
+        },
+        {
+          label: "Simulation Models",
+          key: "sim_models"
+        },
+        {
+          label: "SPARC Protocols",
+          key: "protocols"
         },
         {
           label: "Files",
           key: "files"
-        },
-        {
-          label: "Embargoed",
-          key: "embargo"
         }
       ]
     };
@@ -152,7 +156,7 @@ export default {
 
 .control-search-type {
   margin-right: 8px;
-  width: 120px;
+  width: 160px;
 }
 .control-search-input {
   flex: 1;

@@ -39,7 +39,7 @@
         <p>
           Raw files and metadata are stored in an AWS S3 Requester Pays bucket. You can learn more about
           <a
-            href="https://help.blackfynn.com/articles/3049886-downloading-data-from-aws"
+            href="https://docs.sparc.science/public_dataset_access.html"
             target="_blank"
           >
             downloading data from AWS
@@ -61,12 +61,13 @@
       </div>
     </div>
     <div class="discover-banner">
-      For more public datasets, visit
+      
+      For more information, visit:
       <a
-        href="https://discover.blackfynn.com"
+        href="https://docs.sparc.science/public_dataset_access.html"
         target="_blank"
       >
-        discover.blackfynn.com
+        https://docs.sparc.science
       </a>
     </div>
   </el-dialog>

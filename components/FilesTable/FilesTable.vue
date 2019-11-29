@@ -40,7 +40,6 @@
       <el-table
         v-else
         :data="data"
-        :default-sort = "{prop: 'name', order: 'ascending'}"
         v-loading="isLoading"
       >
         <el-table-column
@@ -162,7 +161,7 @@
     defaultTo,
     pathOr
   } from 'ramda'
-  import FormatStorage from '../../mixins/bf-storage-metrics/index'
+  import FormatStorage from '@/mixins/bf-storage-metrics/index'
 
   export default {
     name: 'FilesTable',
@@ -224,7 +223,6 @@
     },
 
     mounted: function () {
-      // this.getFiles()
     },
 
     methods: {
@@ -245,7 +243,7 @@
 
         this.$axios.$get(this.getFilesurl)
           .then(response => {
-            this.data = response.data.files
+            this.data = response.files
           })
           .catch(() => {
             this.hasError = true
@@ -308,9 +306,9 @@
         const fileName = pathOr('', ['row', 'name'], scope)
 
         const requestUrl = `/api/download?key=${filePath}`
-        this.$http.get(requestUrl).then(
+        this.$axios.$get(requestUrl).then(
           response => {
-            this.downloadFile(fileName, response.data)
+            this.downloadFile(fileName, response)
           }
         )
       },
@@ -332,9 +330,9 @@
 
       const requestUrl = `/api/download?key=${filePath}`
 
-      this.$http.get(requestUrl).then(
+      this.$axios.$get(requestUrl).then(
         response => {
-          const url = response.data
+          const url = response
           const encodedUrl = encodeURIComponent(url)
           const finalURL = `https://view.officeapps.live.com/op/view.aspx?src=${encodedUrl}`
           window.open(finalURL, '_blank')

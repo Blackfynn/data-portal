@@ -5,7 +5,6 @@
                 <div class="header">
                     <div class="logo">
                         <sparc-logo/>
-                        <!-- <span class="data-portal-title">Data Portal</span> -->
                     </div>
                     <button
                         class="btn-menu"
@@ -61,24 +60,19 @@
                 && !pathOrHashContainsString("/sim")
         },
         {
-            title: "About",
-            href: "/about",
-            active: pathOrHashContainsString("/about")
-        },
-        {
-            title: "Browse Data",
+            title: "Explore Data",
             href: "/data",
             active: pathOrHashContainsString("/data")
         },
         {
-            title: "Visualize Maps",
+            title: "SPARC Resources",
             href: "/map",
             active: pathOrHashContainsString("/map")
         },
         {
-            title: "Analyze & Simulate",
-            href: "/sim",
-            active: pathOrHashContainsString("/sim")
+            title: "About",
+            href: "/about",
+            active: pathOrHashContainsString("/about")
         }
     ];
 

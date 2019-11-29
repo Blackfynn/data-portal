@@ -6,28 +6,29 @@
           <el-col :xs="22" :sm="22" :md="22" :lg="18" :xl="16">
             <div class="breadcrumb">
               <el-row>
-                <!-- <el-col :xs="24" :lg="12"> -->
-                  <h3>Data</h3>
-                  <p>Datasets are annotated with common standards, allowing users to perform cross-dataset comparisons and analyses.</p>
-                <!-- </el-col> -->
+                 <el-col :xs="24" :lg="12"> 
+                  <h3>Explore data:</h3> <p>Explore the SPARC Data Resources such as Datasets, Protocols, and Metadata records</p>
+                </el-col> 
               </el-row>
             </div>
           </el-col>
         </el-row>
+        <div class="search">
+          <el-row type="flex" justify="center">
+            <el-col :xs="22" :sm="22" :md="12" :lg="8">
+              <search-controls
+                :search-on-load="true"
+                :is-clear-search-visible="isClearSearchVisible"
+                submit-text="Go"
+                @query="onSearchQuery"
+              />
+            </el-col>
+          </el-row>
+        </div>
+
       </div>
     </div>
-    <div class="search section">
-      <el-row type="flex" justify="center">
-        <el-col :xs="22" :sm="22" :md="12" :lg="8">
-          <search-controls
-            :search-on-load="true"
-            :is-clear-search-visible="isClearSearchVisible"
-            submit-text="Go"
-            @query="onSearchQuery"
-          />
-        </el-col>
-      </el-row>
-    </div>
+
     <div class="section">
       <el-row type="flex" justify="center">
         <el-col :xs="22" :sm="22" :md="22" :lg="18" :xl="16">
@@ -42,6 +43,12 @@
         <el-col :xs="22" :sm="22" :md="22" :lg="18" :xl="16">
           <grid
             v-if="searchType === 'datasets'"
+            v-loading="loading"
+            :cards="results"
+          />
+
+          <grid
+            v-if="searchType === 'sim_models'"
             v-loading="loading"
             :cards="results"
           />
@@ -266,9 +273,12 @@ export default {
         case "files":
           requestUrl = `https://api.blackfynn.io/discover/search/${type}?limit=${this.limit}&offset=${offset}&organization=SPARC%20Consortium`;
 
-          if (terms) {
-            requestUrl += `&query=${terms}`
-          }
+            if (terms) {
+              requestUrl += `&query=${terms}`
+            }
+            break;
+        case "sim_models":
+          requestUrl = `https://api.blackfynn.io/discover/search/datasets?limit=${this.limit}&offset=${offset}&query=simcore`;
           break;
         case "embargo":
           requestUrl = `/api/datasets/embargo`;
@@ -283,18 +293,19 @@ export default {
         }
       })
 
-      this.$axios.get(requestUrl).then(
+      this.$axios.$get(requestUrl).then(
         function(response) {
-          this.totalCount = response.data.totalCount;
-          this.limit = response.data.limit;
-          this.offset = response.data.offset;
+          this.totalCount = response.totalCount;
+          this.limit = response.limit;
+          this.offset = response.offset;
 
           switch (type) {
             case "datasets":
-              this.results = response.data.datasets
+            case "sim_models":
+              this.results = response.datasets
               break;
             case "files":
-              this.results = response.data.files.map(response => ({
+              this.results = response.files.map(response => ({
                 uri: response.uri,
                 name: response.name,
                 size: response.size,
@@ -302,8 +313,8 @@ export default {
               }));
               break;
             case "embargo":
-              this.results = response.data
-              this.limit = response.data.length;
+              this.results = response
+              this.limit = response.length;
               this.offset = 0;
           }
 
@@ -330,7 +341,7 @@ export default {
 
       this.$axios.get(requestUrl).then(
         response => {
-          this.downloadFile(fileName, response.data)
+          this.downloadFile(fileName, response)
         }
       )
     },
@@ -435,6 +446,10 @@ button.clear-all {
   background: #fff;
   border: 1px solid rgb(228, 231, 237);
   padding: 16px;
+}
+
+.search {
+  padding-top: 1em;
 }
 
 .section {
