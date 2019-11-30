@@ -8,13 +8,11 @@
               <el-row>
                 <el-col :span="24">
                   <router-link
-              :to="{ name: 'data' }"
-            >
-              <i class="el-icon-arrow-left" />
-              View all Datasets
-            </router-link>
+                    :to="{ name: 'data' }"
+                  >
+                    <i class="el-icon-arrow-left" />Back to all results
+                  </router-link>
                 </el-col>
-                
               </el-row>
             </div>
           </el-col>
@@ -36,15 +34,25 @@
     </el-row>
 
     <el-row type="flex" justify="center">
+      <el-col class="meta_switch" :xs="22" :sm="22" :md="22" :lg="18" :xl="16">
+        <el-switch
+          v-model="show_meta"
+          active-color="#24245b"
+          inactive-color="#24245b"
+          active-text="Show Metadata"
+          inactive-text="Show Files">
+        </el-switch>
+      </el-col>
+    </el-row>
+
+    <el-row v-if="!show_meta" type="flex" justify="center">
       <el-col :xs="22" :sm="22" :md="22" :lg="18" :xl="16">
-        <h2>Files</h2>
         <files-table :dataset-details="datasetDetails" />
       </el-col>
     </el-row>
 
-    <el-row type="flex" justify="center">
+    <el-row v-if="show_meta" type="flex" justify="center">
       <el-col :xs="22" :sm="22" :md="22" :lg="18" :xl="16">
-        <h2>Metadata</h2>
         <metadata-table :dataset-details="datasetDetails" />
       </el-col>
     </el-row>
@@ -217,7 +225,8 @@ export default {
       errorLoading: false,
       loadingMarkdown: false,
       markdown: '',
-      datasetRecords: []
+      datasetRecords: [],
+      show_meta: false
     }
   },
 
@@ -498,6 +507,14 @@ export default {
 <style lang="scss" scoped>
 @import '@/assets/_spacing.scss';
 
+.breadcrumb {
+
+  a {
+    color: white;
+    font-weight: 600;
+  }
+}
+
 .header {
   .gradient {
     padding: 1.5em 0;
@@ -513,6 +530,12 @@ export default {
 .copy-success-notification {
   color: #fff;
   margin-left: 5px
+}
+
+.meta_switch {
+  padding: 8px 0;
+  color: #f0f2f5;
+  border-bottom: 1px solid #0026ff
 }
 
 .fade-leave-active {
@@ -718,6 +741,7 @@ export default {
   }
 }
 .files-table {
-  margin: 24px 0 32px;
+  margin: 8px 0;
+  // margin: 24px 0 18px;
 }
 </style>

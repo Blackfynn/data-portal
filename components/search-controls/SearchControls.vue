@@ -156,7 +156,7 @@ export default {
 
 .control-search-type {
   margin-right: 8px;
-  width: 160px;
+  width: 180px;
 }
 .control-search-input {
   flex: 1;

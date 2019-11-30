@@ -3,7 +3,7 @@
     <div class="header">
       <div class="gradient">
         <el-row type="flex" justify="center">
-          <el-col :xs="22" :sm="22" :md="22" :lg="18" :xl="16">
+          <el-col :xs="22" :sm="22" :md="22" :lg="20" :xl="18">
             <div class="breadcrumb">
               <el-row>
                  <el-col :xs="24" :lg="12"> 
@@ -15,7 +15,7 @@
         </el-row>
         <div class="search">
           <el-row type="flex" justify="center">
-            <el-col :xs="22" :sm="22" :md="12" :lg="8">
+            <el-col :xs="22" :sm="22" :md="22" :lg="20" :xl="18">
               <search-controls
                 :search-on-load="true"
                 :is-clear-search-visible="isClearSearchVisible"
@@ -25,7 +25,6 @@
             </el-col>
           </el-row>
         </div>
-
       </div>
     </div>
 
