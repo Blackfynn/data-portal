@@ -742,6 +742,5 @@ export default {
 }
 .files-table {
   margin: 8px 0;
-  // margin: 24px 0 18px;
 }
 </style>

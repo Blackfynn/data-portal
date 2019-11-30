@@ -5,11 +5,7 @@
         <el-row type="flex" justify="center">
           <el-col :xs="22" :sm="22" :md="22" :lg="20" :xl="18">
             <div class="breadcrumb">
-              <el-row>
-                 <el-col :xs="24" :lg="12"> 
                   <h3>Explore data:</h3> <p>Explore the SPARC Data Resources such as Datasets, Protocols, and Metadata records</p>
-                </el-col> 
-              </el-row>
             </div>
           </el-col>
         </el-row>
